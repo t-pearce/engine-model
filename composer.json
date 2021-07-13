@@ -18,6 +18,10 @@
     "require": {
         "weirweb/engine": "@dev"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.81",
+        "phpunit/phpunit": "^9.5"
+    },
     "repositories": [
         {
             "type": "path",
