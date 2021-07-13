@@ -1,0 +1,27 @@
+{
+    "name": "weirweb/engine-model",
+    "description": "Weirweb Engine - Model Module",
+    "version": "1.0",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Engine\\Model\\": "src",
+            "Engine\\Model\\Test\\": "test"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas Pearce",
+            "email": "github@tpearce.net"
+        }
+    ],
+    "require": {
+        "weirweb/engine": "@dev"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../engine"
+        }
+    ]
+}
