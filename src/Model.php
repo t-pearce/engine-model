@@ -6,6 +6,18 @@ abstract class Model implements \Stringable, \ArrayAccess
 {
 	use \Engine\Traits\Creatable;
 
+	public static function fromArray(array $array) : static
+	{
+		$model = static::create();
+
+		foreach($array as $prop => $value)
+		{
+			$model->__set($prop, $value);
+		}
+
+		return $model;
+	}
+
 	public function __call($name, $arguments)
 	{
 		if(preg_match("/^get[A-Z]/", $name) && count($arguments) === 0)
@@ -58,7 +70,8 @@ abstract class Model implements \Stringable, \ArrayAccess
 		return var_export($this, true);
 	}
 
-	public function offsetSet($offset, $value) {
+	public function offsetSet($offset, $value) : void 
+	{
 		if (is_null($offset)) {
 			$this->container[] = $value;
 		} else {
@@ -66,15 +79,18 @@ abstract class Model implements \Stringable, \ArrayAccess
 		}
 	}
 
-	public function offsetExists($offset) {
+	public function offsetExists($offset) : bool
+	{
 		return isset($this->container[$offset]);
 	}
 
-	public function offsetUnset($offset) {
+	public function offsetUnset($offset) : void
+	{
 		unset($this->container[$offset]);
 	}
 
-	public function offsetGet($offset) {
+	public function offsetGet($offset) : mixed
+	{
 		return isset($this->container[$offset]) ? $this->container[$offset] : null;
 	}
 }
